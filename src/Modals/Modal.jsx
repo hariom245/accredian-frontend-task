@@ -29,7 +29,7 @@ const Modal = () => {
      try {
       
      
-      const response = await fetch("http://localhost:3001/referals", {
+      const response = await fetch("https://accredian-backend-task-3-0dd2.onrender.com/referals", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
