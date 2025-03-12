@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        DOCKER_IMAGE= "harimash/react-app:latest"
+        DOCKER_IMAGE="react"
     }
     tools{
         nodejs "Node20"
@@ -16,7 +16,7 @@ pipeline{
         stage("docker image building"){
             steps{
                 echo "buuuilding docker image"
-                sh "docker build -t ${DOCKER_IMAGE} ."
+                sh "docker build -t ${DOCKER_IMAGE}:latest ."
             }
         }
         stage("docker login"){
@@ -28,7 +28,7 @@ pipeline{
         }
         stage("docker push"){
             steps{
-                sh "docker push  ${DOCKER_IMAGE}"
+                sh "docker push  ${DOCKER_IMAGE}:latest"
             }
         }
     }
