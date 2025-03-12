@@ -21,10 +21,11 @@ pipeline{
         }
         stage("docker login"){
             steps{
-                withCredentials([usernamePassword('docker-cred',usernameVariable: DOCKER_USRENAME,passwordVariable: DOCKER_PASSWORD)])
-                echo"Docker login"
-                 sh "echo ${DOOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --pasword-stdin "
+                withCredentials([usernamePassword(credentialsId: 'docker-cred',usernameVariable: DOCKER_USERNAME,passwordVariable: DOCKER_PASSWORD)]){
+                echo "Docker login"
+                 sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --pasword-stdin "
             }
+          }
         }
         stage("docker push"){
             steps{
