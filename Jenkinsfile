@@ -19,14 +19,17 @@ pipeline{
                 sh "docker build -t ${DOCKER_IMAGE}:latest ."
             }
         }
-        stage("docker login"){
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'docker-cred',usernameVariable: DOCKER_USERNAME,passwordVariable: DOCKER_PASSWORD)]){
+       stage("docker login") {
+        steps {
+        withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+            script {
                 echo "Docker login"
-                 sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --pasword-stdin "
+                sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
             }
-          }
         }
+    }
+}
+
         stage("docker push"){
             steps{
                 sh "docker push  ${DOCKER_IMAGE}:latest"
