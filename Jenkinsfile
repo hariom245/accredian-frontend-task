@@ -16,7 +16,7 @@ pipeline{
         stage("docker image building"){
             steps{
                 echo "buuuilding docker image"
-                sh "docker build -t ${DOCKER_IMAGE}:latest ."
+                sh "docker build -t harimash/${DOCKER_IMAGE}:latest ."
             }
         }
        stage("docker login") {
@@ -32,7 +32,7 @@ pipeline{
 
         stage("docker push"){
             steps{
-                sh "docker push  ${DOCKER_IMAGE}:latest"
+                sh "docker push  harimash/${DOCKER_IMAGE}:latest"
             }
         }
     }
