@@ -3,6 +3,9 @@ pipeline{
     environment{
         DOCKER_IMAGE= "harimash/react-app:latest"
     }
+    tools{
+        nodejs "NODE20"
+    }
     stages{
         stage('installation'){
             steps{
