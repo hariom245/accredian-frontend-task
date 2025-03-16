@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment{
-        DOCKER_IMAGE="react"
+        DOCKER_IMAGE="react-app"
     }
     tools{
         nodejs "Node20"
